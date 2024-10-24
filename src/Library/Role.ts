@@ -14,7 +14,6 @@ function ViewRoles(): void {
 async function AddRole() {
     const newCli = new CLI();
     const depChoices = await getDepartments();
-    console.log(JSON.stringify(depChoices));
     if (depChoices) {
         inquirer
             .prompt([
@@ -42,8 +41,6 @@ async function AddRole() {
                 }
                 else {
                     const queryString = `INSERT INTO role(title, salary, department_id) VALUES ('${answers.roleNAme}',${answers.salary},${answers.depName})`;
-                    console.log("==========I am here=========");
-                    console.log(queryString);
                     modifyQueryRequest(queryString);
                 }
             });

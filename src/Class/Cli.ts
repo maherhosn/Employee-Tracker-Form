@@ -6,7 +6,7 @@
 //import the poper packages and link the Classes together
 import inquirer from 'inquirer';
 import { ViewDepartments, AddDepartment } from '../Library/Department.js'
-import { ViewEmployees, AddEmployee } from '../Library/Employees.js'
+import { ViewEmployees, AddEmployee, UpdateEmployee } from '../Library/Employees.js'
 import { ViewRoles,AddRole } from '../Library/Role.js'
 
 // WHEN I start the application
@@ -49,6 +49,7 @@ class Cli {
                 } else if (answers.action === 'Add an Employee') {
                     AddEmployee();
                 } else if (answers.action === 'Update an Employee Role') {
+                    UpdateEmployee();
                 } else {
                     // exit the cli if the user selects exit
                     process.exit(1);

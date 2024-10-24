@@ -15,14 +15,15 @@ function ViewEmployees():void{
 // -- and that employee is added to the database
 async function AddEmployee() {
     const newCli = new CLI();
+    
     const roleChoices = await getRoleChoices();
-    console.log(JSON.stringify(roleChoices));
+    
     const managerChoices = await getManagerChoices();
     managerChoices.unshift({
         name: "None",
         value: "Null",
     });
-    console.log(JSON.stringify(managerChoices));
+
     if (roleChoices && managerChoices) {
         inquirer
             .prompt([
@@ -56,8 +57,6 @@ async function AddEmployee() {
                 }
                 else {
                         const queryString = `INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES  ('${answers.firstName}','${answers.lastName}',${answers.empRole},${answers.empManager})`;
-                        console.log("==========this is the query===========")
-                        console.log(queryString);
                         modifyQueryRequest(queryString);                   
                 }
             });
@@ -68,7 +67,38 @@ async function AddEmployee() {
 // =================================================
 // WHEN I choose to update an employee role
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
-
+async function UpdateEmployee() {
+    const newCli = new CLI();
+    const employeeChoices = await getManagerChoices();
+    const roleChoices = await getRoleChoices();
+    if (roleChoices && employeeChoices) {
+        inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'empName',
+                    message: 'Select the Employee you wish to update',
+                    choices: employeeChoices,
+                },
+                {
+                    type: 'list',
+                    name: 'emplRole',
+                    message: 'Select the Employee new Role',
+                    choices: roleChoices,
+                }
+            ])
+            .then((answers) => {
+                if (answers.empName == "" || answers.emplRole=="") {
+                    console.log("Employee entries can not be Null")
+                    newCli.startCli();
+                }
+                else {
+                        const queryString = `Update employee set role_id=${answers.emplRole} where id=${answers.empName};`;
+                        modifyQueryRequest(queryString);                   
+                }
+            });
+    }
+}
 
 //This async function waits for data from the database to be parsed as choice values for the user
 async function getManagerChoices() {
@@ -82,5 +112,5 @@ async function getManagerChoices() {
     return formatRows;
 }
 
-export {ViewEmployees, AddEmployee}
+export {ViewEmployees, AddEmployee, UpdateEmployee}
 
