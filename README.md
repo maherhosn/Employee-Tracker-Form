@@ -6,13 +6,13 @@ This Employee Tracker application, has the ability to prompt the user about depa
 ## Table Of Contents:
 - [Installation Guide](#installation-guide)
 - [Usage](#usage)
--	[License](#license)
+- [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
 
 ## Installation Guide:
-Clone the repository to your computer, make sure you have node installed.<br>open a bash terminal & install the requireed npm "node modules" using the command <br>"npm i"<br>you will know that npm is installed properly by seeing the (node module) directories in the desired folders.<br>After the installation is completed, start the program by typing<br>"npm start"<br>This will start the CLI prompt.
+Clone the repository to your computer, make sure you have node installed.<br>download Postgres SQL and create a username and pass to access the database.<br>(make sure to include those in a .env file)<br>there is a .env.example file attached for your reference.<br>After you setup the login details, open a bash terminal & install the requireed npm "node modules" using the command <br>"npm i"<br>you will know that npm is installed properly by seeing the (node module) directories in the desired folders.<br>After the installation is completed, start the program by typing<br>"npm start"<br>This will start the CLI prompt.
 
 ## Usage: 
 The following snapshot is an example of how the database schema is desinged<br>![Snapshot](https://github.com/maherhosn/Employee-Tracker-Form/blob/main/Assets/100-sql-challenge-ERD.png)<br>[!VideoLink](https://drive.google.com/file/d/1BDFcmkrFEl7wzXxQLjnzH6UJZW01q3vb/view)
