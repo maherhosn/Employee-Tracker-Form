@@ -1,11 +1,10 @@
-import { response } from 'express';
 import { pool, connectToDb } from './connection.js';
-import { QueryResult } from 'pg';
 import CLI from "./Class/Cli.js"
 
+
 await connectToDb();
-// for every selection made in the index folder create a query that would fetch the information from 
-// the corresponding classes.
+
+// The following function handles all queries where the full table is needs to be viewed by the user
 function viewQueryResult(data: any) {
   const newCli = new CLI();
   pool.query(data, (err, result) => {
@@ -22,11 +21,12 @@ function viewQueryResult(data: any) {
   });
 }
 
+//The following query command handles all inserts, updates and alters when the user want to change/modify something in the database tables
 function modifyQueryRequest(data: any) {
   const newCli = new CLI();
   pool.query(data, (err, result) => {
     if (err) {
-      console.log("Error record not added: "+err);   
+      console.log("Error record not added: " + err);
       newCli.startCli();
     } else if (result) {
       // console.log(result.rows);
@@ -36,22 +36,15 @@ function modifyQueryRequest(data: any) {
   });
 }
 
-function selectQuery(data: any) {
-  console.log("===================");
-  console.log("this is the query");
-  console.log(data);
-  console.log("===================");
-  pool.query(data, (err, result) => {
-    if (err) {
-      console.log(err);
-      return "none";
-    }
-    else if (result) {
-      console.log("Successfuly queried the data: " + result.rows);
-      return result.rows;
-    }
-    return "none";
-  });
+//The following function handles specific select statements based on certain values within a table and returns tha values to be parsed.
+async function getQueryRequest(data: string) {
+  try {
+    const res = await pool.query(data);
+    return res.rows;
+  } catch (error) {
+    console.error('Error executing query', error);
+    return [];
+  } 
 }
 
-export {viewQueryResult, modifyQueryRequest,selectQuery }
+  export { viewQueryResult, modifyQueryRequest, getQueryRequest }

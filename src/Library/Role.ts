@@ -1,68 +1,64 @@
 import inquirer from "inquirer";
-import { viewQueryResult, modifyQueryRequest } from '../server.js'
-import CLI from "../Class/Cli.js"
-// WHEN I choose to view all roles
-// THEN I am presented with the 
-// -- job title, role id, the department that role belongs to, 
-// -- and the salary for that role
+import { viewQueryResult, modifyQueryRequest, getQueryRequest } from '../server.js';
+import { getDepartments } from './Department.js';
+import CLI from "../Class/Cli.js";
 
-// write a function that would query the database and return the table 
-// with job title, role id, the department that role belongs to, 
-// -- and the salary for that role
 
+// WHEN I choose to view all roles THEN I am presented with the -- job title, role id, the department that role belongs to, -- and the salary for that role
 function ViewRoles(): void {
     const queryString = "Select * from role;";
     viewQueryResult(queryString);
 }
 
-
-//========================================
-
-// WHEN I choose to add a role
-// THEN I am prompted to enter 
-// -- the name, salary, and department for the role 
-// -- and that role is added to the database
-
-// write a function that would connect to the database and insert into the table with a new entry:
-// -- the name, salary, and department for the role 
-// -- and that role is added to the database
-
-function AddRole(): void {
+// WHEN I choose to add a role THEN I am prompted to enter -- the name, salary, and department for the role  -- and that role is added to the database
+async function AddRole() {
     const newCli = new CLI();
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'roleNAme',
-                message: 'Enter the title of the role',
-            },
-            {
-                type: 'input',
-                name: 'salary',
-                message: 'Enter the salary',
-            },
-            {
-                type: 'input',
-                name: 'depName',
-                message: 'Enter the name of the Department associate with the role',
-            }
-        ])
-        .then((answers) => {
-            if (answers.roleNAme == "" || answers.salary == "" || answers.depName == "") {
-                console.log("Role entries can not be Null")
-                newCli.startCli();
-            }
-            else {
-                const queryString = `INSERT INTO role(title, salary, department_id) VALUES ('${answers.roleNAme}',${answers.salary},(select id from department where name ='${answers.depName}'))`;
-                modifyQueryRequest(queryString);
-            }
-        });
+    const depChoices = await getDepartments();
+    console.log(JSON.stringify(depChoices));
+    if (depChoices) {
+        inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'roleNAme',
+                    message: 'Enter the title of the role',
+                },
+                {
+                    type: 'input',
+                    name: 'salary',
+                    message: 'Enter the salary',
+                },
+                {
+                    type: 'list',
+                    name: 'depName',
+                    message: 'Select the Department for this role',
+                    choices: depChoices,
+                }
+            ])
+            .then((answers) => {
+                if (answers.roleNAme == "" || answers.salary == "" || answers.depName == "") {
+                    console.log("Role entries can not be Null")
+                    newCli.startCli();
+                }
+                else {
+                    const queryString = `INSERT INTO role(title, salary, department_id) VALUES ('${answers.roleNAme}',${answers.salary},${answers.depName})`;
+                    console.log("==========I am here=========");
+                    console.log(queryString);
+                    modifyQueryRequest(queryString);
+                }
+            });
+    }
 }
 
+//This async function waits for data from the database to be parsed as choice values for the user
+async function getRoleChoices() {
+    const queryString = "select title, id from role;"
+    const rows = await getQueryRequest(queryString);
+    const formatRows = rows.map(row => ({
+        name: row.title,
+        value: row.id,
+    }));
+    return formatRows;
+}
 
-// function AddRole(): string {
-//     let queryString = EnterRoleDetails();
-//     return queryString;
-// }
-
-export { ViewRoles,AddRole }
+export { ViewRoles, AddRole, getRoleChoices }
