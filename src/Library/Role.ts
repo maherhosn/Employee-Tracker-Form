@@ -20,17 +20,17 @@ async function AddRole() {
                 {
                     type: 'input',
                     name: 'roleNAme',
-                    message: 'Enter the title of the role',
+                    message: 'What is the name of the role?',
                 },
                 {
                     type: 'input',
                     name: 'salary',
-                    message: 'Enter the salary',
+                    message: 'What is the salary of the role?',
                 },
                 {
                     type: 'list',
                     name: 'depName',
-                    message: 'Select the Department for this role',
+                    message: 'Which department does the role belong to?',
                     choices: depChoices,
                 }
             ])

@@ -17,6 +17,7 @@ class Cli {
     constructor() { };
 
     startCli(): void {
+        console.log("What would you like to do?")
         inquirer
             .prompt([
                 {
@@ -24,13 +25,13 @@ class Cli {
                     name: 'action',
                     message: 'Select an action',
                     choices: [
-                        "View All Departments",
-                        "View All Roles",
                         "View All Employees",
-                        "Add a Department",
-                        "Add a Role",
                         "Add an Employee",
                         "Update an Employee Role",
+                        "View All Roles",
+                        "Add a Role",
+                        "View All Departments",
+                        "Add a Department",
                         "Exit"
                     ]
                 },

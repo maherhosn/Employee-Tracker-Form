@@ -16,7 +16,7 @@ function AddDepartment(): void {
             {
                 type: 'input',
                 name: 'depName',
-                message: 'Enter the name of the Department',
+                message: 'What is the name of the Department?',
             },
         ])
         .then((answer) => {

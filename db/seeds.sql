@@ -70,23 +70,23 @@ VALUES  ('Marlene', 'Griggs-Knope', 8, 2),
         ('Tom', 'Haverford', 15, 4),
         ('Sir Andrew Maxwell', 'Dwyer', 16, 2);
 
-INSERT INTO employee(first_name, last_name, role_id, manager_id)
-VALUES  ('Donna', 'Meagle', 19, 4),
-        ('Gerald', 'Gergich', 20, 4),
-        ('Garry', 'Gergich', 20, 4),
-        ('Jerry', 'Gergich', 20, 4),
-        ('Larry', 'Gergich', 20, 4),
-        ('Lenny', 'Gergich', 20, 4),
-        ('Terry', 'Gergich', 20, 4),
-        ('Mailman', 'Gergich', 20, 4),
-        ('Kyle', 'Client', 21, 4),
-        ('Jeremy', 'Jamm', 22, 4);
+-- INSERT INTO employee(first_name, last_name, role_id, manager_id)
+-- VALUES  ('Donna', 'Meagle', 19, 4),
+--         ('Gerald', 'Gergich', 20, 4),
+--         ('Garry', 'Gergich', 20, 4),
+--         ('Jerry', 'Gergich', 20, 4),
+--         ('Larry', 'Gergich', 20, 4),
+--         ('Lenny', 'Gergich', 20, 4),
+--         ('Terry', 'Gergich', 20, 4),
+--         ('Mailman', 'Gergich', 20, 4),
+--         ('Kyle', 'Client', 21, 4),
+--         ('Jeremy', 'Jamm', 22, 4);
 
-INSERT INTO employee(first_name, last_name, role_id, manager_id)
-VALUES  ('Douglass', 'Howser', 22, 4),
-        ('Ethel', 'Beavers', 23, 2),
-        ('Dawn', 'Krink', 24, 2),
-        ('Len', 'Hugeff', 25, 5),
-        ('Dewey', 'Burnout', 26, 7),
-        ('George', 'Williams', 27, 9),
-        ('David', 'Sanderson', 25, 5);
+-- INSERT INTO employee(first_name, last_name, role_id, manager_id)
+-- VALUES  ('Douglass', 'Howser', 22, 4),
+--         ('Ethel', 'Beavers', 23, 2),
+--         ('Dawn', 'Krink', 24, 2),
+--         ('Len', 'Hugeff', 25, 5),
+--         ('Dewey', 'Burnout', 26, 7),
+--         ('George', 'Williams', 27, 9),
+--         ('David', 'Sanderson', 25, 5);

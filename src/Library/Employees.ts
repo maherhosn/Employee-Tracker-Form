@@ -30,23 +30,23 @@ async function AddEmployee() {
                 {
                     type: 'input',
                     name: 'firstName',
-                    message: 'Enter the First Name of the employee',
+                    message: 'What is the employee`s first name?',
                 },
                 {
                     type: 'input',
                     name: 'lastName',
-                    message: 'Enter the Last Name of the employee',
+                    message: 'What is the employee`s last name?',
                 },
                 {
                     type: 'list',
                     name: 'empRole',
-                    message: 'Select the Employee Role',
+                    message: 'What is the employee`s role?',
                     choices: roleChoices,
                 },
                 {
                     type: 'list',
                     name: 'empManager',
-                    message: 'Select the Employee Manager',
+                    message: 'Who is the employee`s manager?',
                     choices: managerChoices,
                 }
             ])
@@ -77,13 +77,13 @@ async function UpdateEmployee() {
                 {
                     type: 'list',
                     name: 'empName',
-                    message: 'Select the Employee you wish to update',
+                    message: 'Which employee`s role do you want to update?',
                     choices: employeeChoices,
                 },
                 {
                     type: 'list',
                     name: 'emplRole',
-                    message: 'Select the Employee new Role',
+                    message: 'Which role do you want to assign the selected employee?',
                     choices: roleChoices,
                 }
             ])
@@ -108,7 +108,6 @@ async function getManagerChoices() {
         name: row.first_name+" "+row.last_name,
         value: row.id,
     }));
-    console.log(formatRows);
     return formatRows;
 }
 
